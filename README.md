@@ -23,3 +23,6 @@ script.js ---- Roda as funções do jogo/ puxa os áudios de erro, acerto e aber
 style.css ---- Css, controla os efeitos visuais
 
 index.html ---- Titulo, cabeçalho, etc. (Falta o flavicon) / controla as caixas onde estão os elementos do quiz, os textos da tela de inicio, puxa a música de fundo, puxa o script.js e também tem as informações de versão
+
+perguntas.js ----- Onde estão salvas as perguntas
+
