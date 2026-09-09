@@ -1,0 +1,25 @@
+# Conta-Comigo-Web
+Versão Digital do Conta Comigo
+
+///ATENÇÃO: TODOS OS ARQUIVOS (script,style,index) ***DEVEM*** SER SALVOS NO FORMATO UTF-8 (caso contrário, as perguntas e o index dão erro por causa dos caracteres com acentos)///
+
+
+Glossário de arquivos:
+
+
+contacomigo.png --- Imagem com o rosto do personagem, localizada sobre a logo
+
+
+Logo tcctce.png --- Logo do Jogo Conta Comigo com a logo do tce abaixo (Pode ser transformado em link)
+
+
+musica-template.mp3 --- Musica de fundo Placeholder do jogo.
+
+
+-----------------------------------------------------------
+
+script.js ---- Roda as funções do jogo/ puxa os áudios de erro, acerto e abertura de dica
+
+style.css ---- Css, controla os efeitos visuais
+
+index.html ---- Titulo, cabeçalho, etc. (Falta o flavicon) / controla as caixas onde estão os elementos do quiz, os textos da tela de inicio, puxa a música de fundo, puxa o script.js e também tem as informações de versão
