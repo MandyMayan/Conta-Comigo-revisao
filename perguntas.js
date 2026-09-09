@@ -35,7 +35,7 @@ const perguntas = [
             correta: 3
         },
         {
-            pergunta: "Qual desses locais não é uma atração turística da região de Mata de São João, na Bahia?",
+            pergunta: "Qual desses locais NÃO é uma atração turística da região de Mata de São João, na Bahia?",
             alternativas: ["Projeto Tamar", "Castelo Garcia D’Ávila", "Reserva da Sapiranga", "Cachoeira da Fumaça"],
             correta: 3
         },
@@ -173,7 +173,7 @@ const perguntas = [
             correta: 0
         },
         {
-            pergunta: "Qual dessas atribuições <strong>não</strong> é da competência dos Tribunais de Contas?",
+            pergunta: "Qual dessas atribuições NÃO é da competência dos Tribunais de Contas?",
             alternativas: ["Julgar as contas dos chefes do Poder Executivo", "Apreciar a legalidade dos atos de admissão de pessoal", "Sustar a execução de atos impugnados", "Disponibilizar à Justiça Eleitoral a relação dos gestores com contas desaprovadas para fins de inelegibilidade"],
             correta: 0
         },
@@ -280,7 +280,7 @@ const perguntas = [
 
 
         {
-            pergunta: "Qual situação não pode ser fiscalizada pelo TCE/BA?",
+            pergunta: "Qual situação NÃO pode ser fiscalizada pelo TCE/BA?",
             alternativas: ["Falta de merenda nas escolas estaduais", "Falta de manutenção em estradas administradas por empresas terceirizadas", "Má qualidade da água fornecida nas cidades da Bahia", "Bullying entre alunos da escola estadual"],
             correta: 3
         },
@@ -300,7 +300,7 @@ const perguntas = [
             correta: 0
         },
         {
-            pergunta: "Qual dessas atribuições <strong>não</strong> é da competência dos Tribunais de Contas?",
+            pergunta: "Qual dessas atribuições NÃO é da competência dos Tribunais de Contas?",
             alternativas: ["Julgar as contas dos chefes do Poder Executivo", "Apreciar a legalidade dos atos de admissão de pessoal", "Sustar a execução de atos impugnados", "Disponibilizar à Justiça Eleitoral a relação dos gestores com contas desaprovadas para fins de inelegibilidade"],
             correta: 0
         },
