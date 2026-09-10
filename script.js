@@ -16,6 +16,8 @@ musicaFundo.volume = 0.3;
 const somAcerto = new Audio('acerto.mpeg');
 const somErro = new Audio('erro.mpeg');
 const somDica = new Audio('dica.mpeg');
+const somVitoria = new Audio('victory-sound.mpeg');
+const somDerrota = new Audio('fail-sound.mpeg');
 
 /**
  * Função utilitária para reproduzir o som do iní­cio
@@ -304,10 +306,12 @@ function endGame() {
     musicaFundo.currentTime = 0;
 
     if (pontuacao >= PONTOS_PARA_VENCER) {
+        tocarSom(somVitoria);
         resultTitle.textContent = "Você Venceu!";
         resultIcon.textContent = "🏆";
         resultMessage.textContent = `Parabéns! Você alcançou o objetivo atingindo ${pontuacao} ponto(s).`;
     } else {
+        tocarSom(somDerrota);
         resultTitle.textContent = "Você Perdeu!";
         resultIcon.textContent = "❌";
         resultMessage.textContent = `Você fez ${pontuacao} ponto(s). Eram necessários pelo menos ${PONTOS_PARA_VENCER} pontos para vencer.`;
