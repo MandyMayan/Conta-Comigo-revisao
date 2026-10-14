@@ -3,8 +3,8 @@
  //  =================================================== */
 // Pontuao minima necessária para vencer ou perder o jogo
 
-const PONTOS_PARA_VENCER = 5;
-const QUESTOES_PARA_PERDER = 5;
+const PONTOS_PARA_VENCER = 10;
+const QUESTOES_PARA_PERDER = 10;
 
 // Captura o elemento de áudio
 const musicaFundo = document.getElementById('musica-fundo');
@@ -38,6 +38,7 @@ function tocarSom(audio) {
 let perguntasAtuais = [];
 let indicePerguntaAtual = 0;
 let pontuacao = 0;
+let questoesAcertadas = 0;
 let tempoRestante = 0;
 let tempoLimite = 30; 
 let timerInterval = null;
@@ -67,6 +68,8 @@ const resultTitle = document.getElementById('result-title');
 const resultIcon = document.getElementById('result-icon');
 const resultMessage = document.getElementById('result-message');
 const finalScoreDisplay = document.getElementById('final-score');
+const finalCorrectCount = document.getElementById('correct-count');
+const finalErrorCount = document.getElementById('error-count');
 const muteBtn = document.getElementById('mute-btn');
 
 /* ===================================================
@@ -90,6 +93,43 @@ function shuffle(array) {
     return arrayCopiado;
 }
 
+const COOKIE_PERGUNTAS_VISTAS = 'contaComigoPerguntasVistas';
+
+function obterIdPergunta(pergunta) {
+    let hash = 2166136261;
+    for (let i = 0; i < pergunta.pergunta.length; i++) {
+        hash ^= pergunta.pergunta.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+    }
+    return (hash >>> 0).toString(36);
+}
+
+function obterPerguntasVistas() {
+    const cookie = document.cookie
+        .split(';')
+        .map(item => item.trim())
+        .find(item => item.startsWith(`${COOKIE_PERGUNTAS_VISTAS}=`));
+
+    if (!cookie) return new Set();
+
+    try {
+        const ids = JSON.parse(decodeURIComponent(cookie.slice(cookie.indexOf('=') + 1)));
+        return Array.isArray(ids) ? new Set(ids.filter(id => typeof id === 'string')) : new Set();
+    } catch {
+        return new Set();
+    }
+}
+
+function salvarPerguntasVistas(ids) {
+    document.cookie = `${COOKIE_PERGUNTAS_VISTAS}=${encodeURIComponent(JSON.stringify([...ids]))}; Max-Age=31536000; Path=/; SameSite=Lax`;
+}
+
+function registrarPerguntaVista(pergunta) {
+    const ids = obterPerguntasVistas();
+    ids.add(obterIdPergunta(pergunta));
+    salvarPerguntasVistas(ids);
+}
+
 function startGame() {
 	tempoLimite = 30;
 
@@ -98,10 +138,20 @@ function startGame() {
         console.log("O autoplay foi bloqueado pelo navegador.");
     });
 	
-    perguntasAtuais = shuffle(perguntas);
+    const idsPerguntasVistas = obterPerguntasVistas();
+    const perguntasDisponiveis = perguntas.filter(pergunta => !idsPerguntasVistas.has(obterIdPergunta(pergunta)));
+
+    if (perguntasDisponiveis.length === 0) {
+        idsPerguntasVistas.clear();
+        salvarPerguntasVistas(idsPerguntasVistas);
+        perguntasAtuais = shuffle(perguntas);
+    } else {
+        perguntasAtuais = shuffle(perguntasDisponiveis);
+    }
     
    indicePerguntaAtual = 0;
     pontuacao = 0;
+    questoesAcertadas = 0;
     questoesPerdidas = 0;
     scoreDisplay.textContent = pontuacao;
     atualizarBarraProgresso(); // ADICIONE AQUI
@@ -124,6 +174,7 @@ function loadQuestion() {
     hintBox.innerHTML = '';
 
     const perguntaAtual = perguntasAtuais[indicePerguntaAtual];
+    registrarPerguntaVista(perguntaAtual);
 
     if (perguntaAtual.dica) {
         hintBtn.classList.remove('hidden');
@@ -209,6 +260,7 @@ function selectOption(indexSelecionado) {
     const ehCorreta = indexSelecionado === perguntaAtual.correta;
 
     if (ehCorreta) { 
+        questoesAcertadas++;
         pontuacao += 1;
 		scoreDisplay.textContent = pontuacao;
 		atualizarBarraProgresso();
@@ -299,6 +351,8 @@ function endGame() {
     endScreen.classList.add('active');
 
     finalScoreDisplay.textContent = pontuacao;
+    finalCorrectCount.textContent = questoesAcertadas;
+    finalErrorCount.textContent = questoesPerdidas;
 	
 	// Pausa a música
     musicaFundo.pause();
