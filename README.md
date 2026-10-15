@@ -33,3 +33,7 @@ Removido os "30 segundos por pergunta" da área abaixo do texto de jogar e adici
 Atualização 14/10/26
 * Agora o jogo salva cookies no navegador, impedindo que as perguntas se repitam entre as sessões.
 * Agora o jogo exibe ao final da partida o número de acertos e erros.
+
+
+Atualização 15/10/26 
+* Atualização das instruções no texto introdutório ao abrir o jogo
