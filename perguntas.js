@@ -791,7 +791,7 @@ const perguntas = [
             correta: 2
             
         },{
-            pergunta: "Quem é responsável por recuperar áreas degradadas por poluição ambiental?",
+            pergunta: "Qual dessas plantas é uma palmeira endêmica do estado da Bahia, Sergipe e Alagoas, já tendo sido considerada como vulnerável de risco de extinção?",
             alternativas: ["Coqueiro", "Ipê-Amarelo", "Piaçava", "Pau-Brasil"],
             correta: 2
             
@@ -849,6 +849,11 @@ const perguntas = [
             pergunta: "Qual dessas não é uma atribuição do Conselho Estadual de Recursos Hídricos?",
             alternativas: ["Estabelecer prazos, metas e condições para que o esgoto seja tratado antes de seu lançamento", "Enquadrar e reduzir os níveis de poluição nas águas", "Realizar a cobrança de uso de recursos hídricos", "Impedir o acesso da população às praias"],
             correta: 3
+            
+        }, {
+            pergunta: "Quem é responsável por recuperar áreas degradadas por poluição ambiental?",
+            alternativas: ["A população local", "A Assembleia Legislativa", "O gerador da poluição", "O Ibama"],
+            correta: 2
             
         },
 ];
